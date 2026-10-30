@@ -1,0 +1,37 @@
+! =====================================================================
+! YouTube Shorts - hide on ALL of YouTube
+! EXCEPT on channel pages (/@handle, /channel/, /c/, /user/)
+! Requires uBlock Origin (:matches-path, available starting with version 1.37.3b13)
+! =====================================================================
+
+! --- Home / feeds (desktop) ---
+youtube.com##:matches-path(/^\/(?!@|channel\/|c\/|user\/)/) .ytGridShelfViewModelHost:has-text(Shorts)
+youtube.com##:matches-path(/^\/(?!@|channel\/|c\/|user\/)/) ytd-rich-shelf-renderer:has-text(Shorts)
+youtube.com##:matches-path(/^\/(?!@|channel\/|c\/|user\/)/) ytd-rich-section-renderer:has(a[href^="/shorts/"])
+youtube.com##:matches-path(/^\/(?!@|channel\/|c\/|user\/)/) .ytd-rich-shelf-renderer:has-text(Shorts)
+youtube.com##:matches-path(/^\/(?!@|channel\/|c\/|user\/)/) .rich-section-content.fresh-feeds-dismissals
+youtube.com##:matches-path(/^\/(?!@|channel\/|c\/|user\/)/) .ytGridShelfViewModelHost
+
+! --- Trends / Search / Results ---
+youtube.com##:matches-path(/^\/(?!@|channel\/|c\/|user\/)/) ytm-reel-shelf-renderer
+youtube.com##:matches-path(/^\/(?!@|channel\/|c\/|user\/)/) .ytLockupViewModelWrapper:has(a[href^="/shorts/"])
+youtube.com##:matches-path(/^\/(?!@|channel\/|c\/|user\/)/) ytd-reel-shelf-renderer:has(a[href^="/shorts/"])
+youtube.com##:matches-path(/^\/(?!@|channel\/|c\/|user\/)/) .media-item-thumbnail-container[aria-hidden][href^="/shorts/"]
+youtube.com##:matches-path(/^\/(?!@|channel\/|c\/|user\/)/) ytm-media-item:has(a[href^="/shorts/"])
+youtube.com##:matches-path(/^\/(?!@|channel\/|c\/|user\/)/) ytd-video-renderer > .ytd-video-renderer:has(a[href^="/shorts/"])
+youtube.com##:matches-path(/^\/(?!@|channel\/|c\/|user\/)/) ytm-shorts-lockup-view-model-v2
+
+! --- Side Carousels: Shorts ---
+youtube.com##:matches-path(/^\/(?!@|channel\/|c\/|user\/)/) #items.yt-horizontal-list-renderer > ytd-reel-item-renderer
+
+! --- Mobile ---
+m.youtube.com##:matches-path(/^\/(?!@|channel\/|c\/|user\/)/) .rich-section-content
+m.youtube.com##:matches-path(/^\/(?!@|channel\/|c\/|user\/)/) .big-shorts-singleton
+
+! --- Channel “Shorts” tab: visible on channel pages ---
+youtube.com##:matches-path(/^\/(?!@|channel\/|c\/|user\/)/) yt-tab-shape.ytTabShapeHostClickable.ytTabShapeHost > .ytTabShapeTab:has-text(Shorts)
+
+! --- Global navigation to “Shorts”: ALWAYS remains hidden ---
+youtube.com##.pivot-shorts.pivot-bar-item-tab
+youtube.com##.yt-simple-endpoint[title="Shorts"]
+youtube.com##.ytChipShapeHost:has-text(Shorts)
